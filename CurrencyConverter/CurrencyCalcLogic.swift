@@ -9,22 +9,15 @@ import Foundation
 
 struct CurrencyCalcLogic {
     
-    var currencySwitch = true
+    //variable declarations to compute conversions.
     var amountInUSD : Int?
-    var convertedCurrency : Double?
-    var conversionRate : Double?
     var currencyOther : String?
+    var conversionRate : Double?
+    var convertedCurrency : Double?
     
-    
-    mutating func setSwitch(_ switchValue: Bool) {
-        if switchValue {
-            currencySwitch = true
-        } else {
-            currencySwitch = false
-        }
-    }
-    
-    mutating func convertCurrency(_ currencyType: String) -> String {
+    //passes in the target currency String from the main view and outputs the converted currency as String
+    //conversion rate variable is set using the ConversionRateData
+    mutating func convertCurrency(_ currencyType: String) -> Double {
         switch currencyType {
         case "Won":
             conversionRate = ConversionRateData.Won.rawValue
@@ -35,13 +28,14 @@ struct CurrencyCalcLogic {
         case "Yen":
             conversionRate = ConversionRateData.Yen.rawValue
         default:
-            return "No conversion available"
+            break
         }
         convertedCurrency = Double(amountInUSD!) * conversionRate!
-        return String(convertedCurrency!)
+        return convertedCurrency!
     }
 }
 
+//currency conversion rates as of 02/17/24
 enum ConversionRateData : Double{
     case Won = 1332.58
     case Peso = 17.05
