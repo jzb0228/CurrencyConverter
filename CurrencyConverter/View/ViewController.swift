@@ -95,13 +95,13 @@ class ViewController: UIViewController {
     }
     
     func checkInput() throws -> Int {
-        // checks if input is an integer
-        guard UInt(amountInput.text!) is UInt else {
-            throw InputError.invalidFormat(reason: "Integer Values Only")
-        }
         // checks that input is not empty
         guard let checkInput = amountInput.text, !checkInput.isEmpty else {
             throw InputError.noInput(reason: "Enter Value in USD")
+        }
+        // checks if input is an integer
+        guard UInt(amountInput.text!) is UInt else {
+            throw InputError.invalidFormat(reason: "Integer Values Only")
         }
         return Int(amountInput.text!)!
     }

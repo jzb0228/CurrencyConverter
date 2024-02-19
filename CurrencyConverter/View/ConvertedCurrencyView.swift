@@ -29,13 +29,17 @@ class ConvertedCurrencyView: UIViewController {
     let currencyFormat: NumberFormatter = {
         let currencyFormatter = NumberFormatter()
         currencyFormatter.numberStyle = .currency
-        currencyFormatter.maximumFractionDigits = 2
+        currencyFormatter.maximumFractionDigits = 0
         return currencyFormatter
     }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         displayConversion()
+    }
+    
+    @IBAction func back(_ sender: Any) {
+        dismiss(animated: true)
     }
     
     func displayConversion() {
